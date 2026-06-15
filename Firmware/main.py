@@ -1,6 +1,8 @@
+
 #imports for creating and running the keyboard command
 import board
 from kmk.kmk_keyboard import KMKKeyboard
+from kmk.scanners.digitalio import DiodeLessScanner 
 from kmk.keys import KC
 
 
@@ -8,8 +10,9 @@ from kmk.keys import KC
 keyboard = KMKKeyboard()
 
 #Defining what the matrix pins will do for each key
-keyboard.col_pins = (board.D0, board.D1, board.D2)
-keyboard.row_pins = (board.D3,)
+keyboard.matrix = DiodeLessScanner(
+    pins=[board.D8, board.D9, board.D10]
+)
 
 #Keys are defined here telling them what to do
 keyboard.keymap = [
